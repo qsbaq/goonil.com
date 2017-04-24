@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+  <caption>MD5加密解密</caption>
+  <tbody>
+    <tr>
+      <td>明文</td>
+      <td><?=$word?></td>
+    </tr>     
+    <tr>
+      <td>MD5加密(32)大写</td>
+      <td><?=strtoupper($md5);?></td>
+    </tr>    
+    <tr>
+      <td>MD5加密(32)小写</td>
+      <td><?=$md5?></td>
+    </tr>
+    <tr>
+        <td>MD5加密(16)大写</td>
+        <td><?=strtoupper($md516)?></td>
+    </tr>
+    <tr>
+        <td>MD5加密(16)大写</td>
+        <td><?=$md516?></td>
+    </tr>    
+    <tr>
+        <td>SHA1加密</td>
+        <td><?=$sha1?></td>
+    </tr>
+  </tbody>
+</table>

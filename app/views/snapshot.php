@@ -1,0 +1,1 @@
+<textarea class="snapshot-textarea col-md-12 " rows="24" ><?=$snapshot;?></textarea>

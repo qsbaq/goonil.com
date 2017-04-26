@@ -26,8 +26,7 @@ return [
     'settings' => [
         'keywords'       =>'随机密码,MD5加密,sha1加密,搜索引擎快照',
         'description'   =>'一个可以生产随机密码，MD5加密，SHA1加密，搜索引擎快照检测的网站。',
-        'external_js'   => 'app/views/extrenal.js',
         'ads_top'       => null,
-        'ads_bottom'    =>'<img src="https://www.jiloc.com/wp-content/uploads/weixin.gif" style="max-width:600px;">',
+        'ads_bottom'    =>'<img src="https://www.jiloc.com/wp-content/uploads/weixin.gif">',
     ],
 ];

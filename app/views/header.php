@@ -23,13 +23,13 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= Flight::get('flight.base_url');?>app/views/style.css">
-    <link rel="shortcut icon" href="<?= Flight::get('flight.base_url');?>goonil/favicon.ico" />
+    <link rel="shortcut icon" href="<?= Flight::get('flight.base_url');?>app/views/favicon.ico" />
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body class="col-md-offset-2 col-md-8">
 
-<div class="col-md-offset-4">
+<div class="jads">
     <h1><a href="<?= Flight::get('flight.base_url');?>" title="<?= Flight::get('flight.settings')['description'];?>">GooNil.com</a></h1>
     <hr>
 </div>

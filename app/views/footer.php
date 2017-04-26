@@ -14,9 +14,7 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<?php if (!empty(Flight::get('flight.settings')['external_js'])): ?>
-    <script src="<?= Flight::get('flight.base_url');?><?= Flight::get('flight.settings')['external_js'] ?>"></script>
-<?php endif ?>
+<div class="jads"><?php include_once('extrenal.php');?></div>
     
 <script type='text/javascript'>
 var _hmt = _hmt || [];

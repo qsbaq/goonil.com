@@ -55,11 +55,13 @@ Flight::route('/random', function () {
     Flight::render('index',['md5_content'=>'','url'=>'','agent'=>'','word'=>'','snapshot_content'=>'','getrandom'=>$words,'length'=>$length,'type'=>rtrim($Otype,'-')]);
 });
 
+flight::route('/passwd',function(){
+    Flight::etag('passwd-none');
+    Flight::notFound('Please input the words.');        
+});
+
 Flight::route('/passwd/@word', function ($words) {
     Flight::etag('passwd');
-    if( !$words ){
-        Flight::notFound('Please input the words.');
-    }
     $passwd = Flight::get('db')->select('passwd', ['words','md5'], [
                 'words' => $words,
             ]);
@@ -88,7 +90,7 @@ Flight::route('/snapshot', function () {
     }
     $output = http_get($url,$agent);
     if( $output['http_code'] != 200 ){
-        Flight::notFound('The HTTP returns not 200.该HTTP返回状态非200。');
+        Flight::notFound('The URL returns the HTTP status code -> '.$output['http_code'].' .该网址返回HTTP状态代码 -> '.$output['http_code'].'.');
     }
     Flight::render('header',['the_title'=>$url.'-'.$agent.'搜索引擎快照_'],'header_content');
     Flight::render('snapshot',['snapshot'=>$output['data']],'snapshot_content');
@@ -98,10 +100,10 @@ Flight::route('/snapshot', function () {
 });
 
 Flight::map('notFound', function ($message) {
-    Flight::response()->status(404)
+    Flight::response()->status(200)
         ->header('content-type', 'text/html; charset=utf-8')
         ->write(
-            '<h1>404 Page not found.页面未找到</h1>'.
+            '<h1>Error! 异常！</h1>'.
             "<h3>{$message}</h3>".
             '<p><a href="'.Flight::get('flight.base_url').'">Return HOME.回到首页</a></p>'.
             str_repeat(' ', 512)
@@ -109,18 +111,18 @@ Flight::map('notFound', function ($message) {
         ->send();
 });
 
-//Flight::map('error', function (Exception $ex) {
-//    $message = Flight::get('flight.log_errors') ? $ex->getTraceAsString() : '出错了';
-//    Flight::response()->status(500)
-//        ->header('content-type', 'text/html; charset=utf-8')
-//        ->write(
-//            '<h1>500 Error.服务器内部错误</h1>'.
-//            "<h3>{$message}</h3>".
-//            '<p><a href="'.Flight::get('flight.base_url').'">Return HOME.回到首页</a></p>'.
-//            str_repeat(' ', 512)
-//        )
-//        ->send();
-//});
+Flight::map('error', function (Exception $ex) {
+    $message = Flight::get('flight.log_errors') ? $ex->getTraceAsString() : 'Error 出错了';
+    Flight::response()->status(404)
+        ->header('content-type', 'text/html; charset=utf-8')
+        ->write(
+            '<h1>404 Error.Page Not Found.</h1>'.
+            "<h3>{$message}</h3>".
+            '<p><a href="'.Flight::get('flight.base_url').'">Return HOME.回到首页</a></p>'.
+            str_repeat(' ', 512)
+        )
+        ->send();
+});
 
 
 /*

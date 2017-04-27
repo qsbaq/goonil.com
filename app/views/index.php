@@ -133,14 +133,17 @@
                 }
             });
             
-        var myTab = function(id){
-            $('#myTab li').removeClass('active');
-            $('#myTabContent .tab-pane').removeClass('active').removeClass('in');
-            $('#myTab li[data='+id+']').addClass('active');
-            $('#myTabContent .tab-pane[id='+id+']').addClass('active').addClass('in');
-
-        }
-        myTab('<?=$tabId?>');
+            <?php if( $agent ){ ?>
+                $('.spider-agent').find("option[value=\"<?= $agent?>\"]").attr('selected',true);
+            <?php } ?>
+            
+            var myTab = function(id){
+                $('#myTab li').removeClass('active');
+                $('#myTabContent .tab-pane').removeClass('active').removeClass('in');
+                $('#myTab li[data='+id+']').addClass('active');
+                $('#myTabContent .tab-pane[id='+id+']').addClass('active').addClass('in');
+            }
+            myTab('<?=$tabId?>');
         });
     </script>
     <!--选项卡标签结束-->

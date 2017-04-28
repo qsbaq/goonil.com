@@ -2,7 +2,7 @@
 
 Flight::route('/', function () {
     Flight::etag('index');
-    Flight::render('header',['the_title'=>'随机密码生成,MD5加密,搜索引擎快照_'],'header_content');
+    Flight::render('header',['the_title'=>'随机密码生成,MD5加密,搜索引擎快照'],'header_content');
     Flight::render('footer',['tabId'=>'random'],'footer_content');
     Flight::render('index',['md5_content'=>'','url'=>'','agent'=>'','snapshot_content'=>'','word'=>'','getrandom'=>'','length'=>16,'type'=>'AZ-az-09']);
 });
@@ -52,7 +52,9 @@ Flight::route('/random', function () {
     }
     Flight::render('header',['the_title'=>'随机密码生成器'],'header_content');
     Flight::render('footer',['tabId'=>'random'],'footer_content');
-    Flight::render('index',['md5_content'=>'','url'=>'','agent'=>'','word'=>'','snapshot_content'=>'','getrandom'=>$words,'length'=>$length,'type'=>rtrim($Otype,'-')]);
+    Flight::render('index',['md5_content'=>'','url'=>'','agent'=>'','word'=>'','snapshot_content'=>'',
+        'getrandom'=>'<input type="text" class="form-control " value="'.$words.'">',
+        'length'=>$length,'type'=>rtrim($Otype,'-')]);
 });
 
 flight::route('/passwd',function(){
@@ -74,7 +76,7 @@ Flight::route('/passwd/@word', function ($words) {
             'sha1'      => $sha1,
         ]);
     }
-    Flight::render('header',['the_title'=>$words.'_MD5加密_'],'header_content');
+    Flight::render('header',['the_title'=>$words.'_MD5加密'],'header_content');
     Flight::render('passwd',['word'=>$words,'md5'=>$md5,'md516'=>substr($md5,8,16),'sha1'=>$sha1],'md5_content');
     Flight::render('footer',['tabId'=>'passwd'],'footer_content');
     Flight::render('index',['snapshot_content'=>'','agent'=>'','length'=>'','getrandom'=>'','type'=>'','url'=>'']);
@@ -92,7 +94,7 @@ Flight::route('/snapshot', function () {
     if( $output['http_code'] != 200 ){
         Flight::notFound('The URL returns the HTTP status code -> '.$output['http_code'].' .该网址返回HTTP状态代码 -> '.$output['http_code'].'.');
     }
-    Flight::render('header',['the_title'=>$url.'-'.$agent.'搜索引擎快照_'],'header_content');
+    Flight::render('header',['the_title'=>$url.'-'.$agent.'搜索引擎快照'],'header_content');
     Flight::render('snapshot',['snapshot'=>$output['data']],'snapshot_content');
     Flight::render('footer',['tabId'=>'snapshot'],'footer_content');
     Flight::render('index',['md5_content'=>'','word'=>'','agent'=>$agent,'getrandom'=>'','length'=>16,'type'=>'AZ-az-09','url'=>$url]);

@@ -6,6 +6,11 @@
         <li data="passwd"><a href="#passwd" data-toggle="tab">加密解密</a></li>
 	<li data="snapshot"><a href="#snapshot" data-toggle="tab">搜索快照检测</a></li>
     </ul>
+    <!--Ads Begin-->
+    <?php if (!empty(Flight::get('flight.settings')['ads_top'])): ?>
+        <div class="jads"><?= Flight::get('flight.settings')['ads_top'] ?></div>
+    <?php endif ?>
+    <!--Ads End-->    
     <div id="myTabContent" class="tab-content" style="padding-top: 12px;">
         <!--随机密码选项卡开始-->
         <div class="tab-pane fade in active" id="random">

@@ -33,8 +33,6 @@
     <h1><a href="<?= Flight::get('flight.base_url');?>" title="<?= Flight::get('flight.settings')['description'];?>">GooNil.com</a></h1>
     <hr>
 </div>
-<?php if (!empty(Flight::get('flight.settings')['ads_top'])): ?>
-    <div class="jads"><?= Flight::get('flight.settings')['ads_top'] ?></div>
-<?php endif ?>
+
 
 <!--正文开始-->
